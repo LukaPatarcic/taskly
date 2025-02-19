@@ -19,7 +19,7 @@ export async function createTask(
   }
   try {
     const task = await db.insert(tasks).values(req.body).returning();
-    res.status(StatusCodes.CREATED).json(task);
+    res.status(StatusCodes.CREATED).json(task?.[0] ?? {});
   } catch {
     next(
       new CustomError('Failed to add note', StatusCodes.INTERNAL_SERVER_ERROR),
@@ -42,7 +42,7 @@ export async function getTasks(
 
     const groupedTasks = tasks.reduce(
       (acc, task) => {
-        const statusName = task?.status?.value as keyof typeof acc;
+        const statusName = task?.status?.label as keyof typeof acc;
         if (!statusName) {
           return acc;
         }

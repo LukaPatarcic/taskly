@@ -4,11 +4,13 @@ import { error } from '@/middleware/error';
 import tasksRouter from '@/routes/tasks';
 import statusesRouter from '@/routes/statuses';
 import usersRouter from '@/routes/users';
+import cors from 'cors';
 import { setupSwagger } from '@/swagger';
 
 const app = express();
 app.use(urlencoded({ extended: true }));
 app.use(json());
+app.use(cors());
 
 setupSwagger(app);
 
