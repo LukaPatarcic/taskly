@@ -38,23 +38,31 @@ export async function getTasks(
         status: true,
         user: true,
       },
+      orderBy: (tasks, { desc }) => [desc(tasks.createdAt)],
     });
 
-    const groupedTasks = tasks.reduce(
-      (acc, task) => {
-        const statusName = task?.status?.label as keyof typeof acc;
-        if (!statusName) {
-          return acc;
-        }
-
-        if (!acc[statusName]) {
-          acc[statusName] = [];
-        }
-        acc[statusName].push(task);
+    const statuses = await db.query.statuses.findMany();
+    const statusesObject = statuses.reduce(
+      (acc, status) => {
+        acc[status.label] = [];
         return acc;
       },
       {} as Record<string, Task[]>,
     );
+
+    const groupedTasks = tasks.reduce((acc, task) => {
+      const statusName = task?.status?.label as keyof typeof acc;
+      if (!statusName) {
+        return acc;
+      }
+
+      if (!acc[statusName]) {
+        acc[statusName] = [];
+      }
+      acc[statusName].push(task);
+      return acc;
+    }, statusesObject);
+
     res.status(StatusCodes.OK).json(groupedTasks);
   } catch {
     next(

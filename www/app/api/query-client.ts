@@ -1,10 +1,16 @@
-// React Query
 import {
 	MutationCache,
 	QueryCache,
 	QueryClient,
 	isServer,
 } from '@tanstack/react-query';
+
+export const CACHE_KEYS = {
+	STATUSES: 'statuses',
+	USERS: 'users',
+	TASKS: 'tasks',
+	TICKETS: 'tickets',
+}
 
 function makeQueryClient() {
 	return new QueryClient({

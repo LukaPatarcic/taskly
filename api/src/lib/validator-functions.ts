@@ -1,11 +1,21 @@
 import { body, param } from 'express-validator';
 
 export function validateTaskTitle() {
-  return body('title').notEmpty().isString().trim().escape();
+  return body('title')
+    .notEmpty()
+    .isString()
+    .trim()
+    .escape()
+    .isLength({ max: 128 });
 }
 
 export function validateTaskDescription() {
-  return body('description').notEmpty().isString().trim().escape();
+  return body('description')
+    .notEmpty()
+    .isString()
+    .trim()
+    .escape()
+    .isLength({ max: 512 });
 }
 
 export function validateTaskUserId() {

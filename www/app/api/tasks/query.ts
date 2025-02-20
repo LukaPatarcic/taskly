@@ -1,9 +1,9 @@
-import {useMutation, useQuery} from "@tanstack/react-query";
-import {getStatuses} from "~/api/statuses/calls";
+import {useQuery} from "@tanstack/react-query";
 import {getTasks} from "~/api/tasks/calls";
+import {CACHE_KEYS} from "~/api";
 
 export const useGetTasks = () =>
     useQuery({
         queryFn: () => getTasks(),
-        queryKey: ['tasks'],
+        queryKey: [CACHE_KEYS.TASKS],
     });

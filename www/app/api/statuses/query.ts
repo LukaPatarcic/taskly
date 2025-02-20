@@ -1,15 +1,9 @@
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {getStatuses} from "~/api/statuses/calls";
+import {CACHE_KEYS} from "~/api";
 
 export const useGetStatusesQuery = () =>
     useQuery({
         queryFn: () => getStatuses(),
-        queryKey: ['statuses'],
+        queryKey: [CACHE_KEYS.STATUSES],
     });
-
-
-// export const useEditProfileMutation = () =>
-//     useMutation<void, DefaultError, EditProfileRequest>({
-//         mutationFn: (profile) => post('/establishment/v1/profile', profile),
-//         mutationKey: ['/establishment/v1/profile'],
-//     });

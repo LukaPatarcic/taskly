@@ -21,6 +21,7 @@ async function seed() {
       .values({
         firstName: faker.person.firstName(),
         lastName: faker.person.lastName(),
+        avatar: faker.image.avatar(),
         email: faker.internet.email(),
       })
       .returning({ id: users.id });

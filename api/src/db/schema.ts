@@ -7,13 +7,18 @@ export const statuses = pgTable('status', {
   id: serial('id').primaryKey(),
   label: text('label').notNull(),
   value: text('value').notNull(),
+  createdAt: timestamp('createdAt').notNull().defaultNow(),
+  updatedAt: timestamp('updatedAt').$onUpdate(() => new Date()),
 });
 
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
   firstName: text('firstName').notNull(),
   lastName: text('lastName').notNull(),
+  avatar: text('avatar').notNull(),
   email: text('email').notNull(),
+  createdAt: timestamp('createdAt').notNull().defaultNow(),
+  updatedAt: timestamp('updatedAt').$onUpdate(() => new Date()),
 });
 
 export const tasks = pgTable('tasks', {

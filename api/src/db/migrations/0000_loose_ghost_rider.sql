@@ -18,6 +18,7 @@ CREATE TABLE "users" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"firstName" text NOT NULL,
 	"lastName" text NOT NULL,
+	"avatar" text NOT NULL,
 	"email" text NOT NULL
 );
 --> statement-breakpoint

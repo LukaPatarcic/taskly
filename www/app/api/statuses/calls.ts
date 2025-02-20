@@ -1,3 +1,11 @@
-import {get} from "~/api";
+import { get } from '~/api';
 
-export const getStatuses = () => get('/statuses');
+export interface IStatus {
+  id: number;
+  label: string;
+  value: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const getStatuses = () => get<IStatus[]>('/statuses');
