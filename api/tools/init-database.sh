@@ -5,6 +5,8 @@ if [ -z "$DATABASE_URL" ]; then
   exit 1
 fi
 
+DB_DOCKER_PORT=5432
+
 if [[ $DATABASE_URL =~ postgresql:\/\/([^:]+):([^@]+)@([^:]+):([0-9]+)\/(.+) ]]; then
   DB_USER="${BASH_REMATCH[1]}"
   DB_PASSWORD="${BASH_REMATCH[2]}"
@@ -23,11 +25,11 @@ if [ -z "$CONTAINER_ID" ]; then
   exit 1
 fi
 
-DB_EXISTS=$(docker exec -i $CONTAINER_ID psql -U $DB_USER -h localhost -p 5432 -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'")
+DB_EXISTS=$(docker exec -i $CONTAINER_ID psql -U $DB_USER -h localhost -p $DB_DOCKER_PORT -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'")
 
 if [ "$DB_EXISTS" != "1" ]; then
   echo "Database $DB_NAME does not exist. Creating..."
-  docker exec -i $CONTAINER_ID psql -U $DB_USER -h $DB_HOST -p $DB_PORT -c "CREATE DATABASE \"$DB_NAME\""
+  docker exec -i $CONTAINER_ID psql -U $DB_USER -h $DB_HOST -p $DB_DOCKER_PORT -c "CREATE DATABASE \"$DB_NAME\""
   echo "Database $DB_NAME created successfully."
 else
   echo "Database $DB_NAME already exists."

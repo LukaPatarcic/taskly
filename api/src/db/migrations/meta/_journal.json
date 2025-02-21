@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1740086489311,
-      "tag": "0000_loose_ghost_rider",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1740086623836,
-      "tag": "0001_chunky_blindfold",
+      "when": 1740098951837,
+      "tag": "0000_dizzy_puma",
       "breakpoints": true
     }
   ]

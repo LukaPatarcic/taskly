@@ -1,7 +1,9 @@
 CREATE TABLE "status" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"label" text NOT NULL,
-	"value" text NOT NULL
+	"value" text NOT NULL,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp
 );
 --> statement-breakpoint
 CREATE TABLE "tasks" (
@@ -19,7 +21,9 @@ CREATE TABLE "users" (
 	"firstName" text NOT NULL,
 	"lastName" text NOT NULL,
 	"avatar" text NOT NULL,
-	"email" text NOT NULL
+	"email" text NOT NULL,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp
 );
 --> statement-breakpoint
 ALTER TABLE "tasks" ADD CONSTRAINT "tasks_statusId_status_id_fk" FOREIGN KEY ("statusId") REFERENCES "public"."status"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint

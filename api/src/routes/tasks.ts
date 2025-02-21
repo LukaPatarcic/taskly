@@ -140,7 +140,7 @@ tasksRouter.post(
  *       200:
  *         description: Updated task
  */
-tasksRouter.patch(
+tasksRouter.put(
   '/:id',
   validateIdParam(),
   validateTaskDescription(),
