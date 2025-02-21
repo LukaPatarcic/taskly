@@ -1,5 +1,3 @@
-Here's the cleaned up markdown code:
-
 # Project Setup and Usage
 
 ## Prerequisites
@@ -64,6 +62,9 @@ pnpm run start
 ```
 
 ## API Endpoints
+
+For API documentation visit http://localhost:8000/api-docs
+
 ### Users
 - **GET** `/api/users`  
   Returns a list of users.

@@ -1,4 +1,4 @@
-import { get, remove, patch, post } from '~/api';
+import { get, remove, post } from '~/api';
 import type { IUser } from '~/api/users/calls';
 import type { IStatus } from '~/api/statuses/calls';
 import { put } from '~/api/common/put';

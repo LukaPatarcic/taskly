@@ -11,18 +11,9 @@ import {
 } from '~/components/ui/form';
 import { Input } from '~/components/ui/input';
 import { Textarea } from '~/components/ui/textarea';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '~/components/ui/select';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useGetStatusesQuery } from '~/api/statuses/query';
-import { useGetUsersQuery } from '~/api/users/query';
 import { useCreateTaskMutation } from '~/api/tasks/mutations';
 import { Loader2 } from 'lucide-react';
 import { useToast } from '~/hooks/use-toast';
@@ -44,9 +35,6 @@ const formSchema = z.object({
 export const TaskFormCreate = (props: TaskFormProps) => {
   const { closeModal } = props;
   const { toast } = useToast();
-  const { isLoading: isLoadingStatuses, data: statuses } =
-    useGetStatusesQuery();
-  const { isLoading: isLoadingUsers, data: users } = useGetUsersQuery();
   const { mutateAsync, isPending } = useCreateTaskMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

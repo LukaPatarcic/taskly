@@ -13,7 +13,7 @@ import { getQueryClient } from '~/api';
 import './app.css';
 import { Toaster } from '~/components/ui/toaster';
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: 'Taskly' },
     {

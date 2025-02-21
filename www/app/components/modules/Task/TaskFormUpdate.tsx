@@ -11,20 +11,10 @@ import {
 } from '~/components/ui/form';
 import { Input } from '~/components/ui/input';
 import { Textarea } from '~/components/ui/textarea';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '~/components/ui/select';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useGetStatusesQuery } from '~/api/statuses/query';
-import { useGetUsersQuery } from '~/api/users/query';
 import {
-  useCreateTaskMutation,
   useDeleteTaskMutation,
   useUpdateTaskMutation,
 } from '~/api/tasks/mutations';
